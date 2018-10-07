@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace mvc_proboosting.Models
 {
     using System;
@@ -17,28 +19,33 @@ namespace mvc_proboosting.Models
 
         public int BoosterId { get; set; }
 
-        [NotMapped]
-        public string FullName => $"{FirstName} {LastName}";
-
         [Required]
+        [Display(Name = "First Name")]
         [StringLength(50)]
         public string FirstName { get; set; }
 
         [Required]
+        [Display(Name = "Last Name")]
         [StringLength(50)]
         public string LastName { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Name")]
+        public string FullName => $"{FirstName} {LastName}";
 
         [Required]
         [EmailAddress]
         [StringLength(100)]
         public string Email { get; set; }
 
-        [NotMapped]
+        [Required]
+        public DateTime DateCreated { get; set; }
+        
         public DateTime? LastLogon { get; set; }
-
-        [NotMapped]
+        
+        [Display(Name = "Available")]
         public bool? IsAvailable { get; set; }
-
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customers { get; set; }
     }

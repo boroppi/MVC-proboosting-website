@@ -18,7 +18,7 @@ namespace mvc_proboosting.Controllers
         public ActionResult Index()
         {
             var customers = db.Customers.Include(c => c.Booster);
-            return View(customers.ToList());
+            return View(customers.ToList().OrderBy(c => c.FullName));
         }
 
         // GET: Customers/Details/5
@@ -48,8 +48,13 @@ namespace mvc_proboosting.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BoosterId,FirstName,LastName,Email")] Customer customer)
+        public ActionResult Create([Bind(Include = "BoosterId,FirstName,LastName,Email,DateCreated")] Customer customer)
         {
+            // Set DateCreated to now.
+            customer.DateCreated = DateTime.Now;
+            // Force Email to be lowercase
+            customer.Email = customer.Email.ToLower();
+
             if (ModelState.IsValid)
             {
                 db.Customers.Add(customer);
@@ -84,6 +89,9 @@ namespace mvc_proboosting.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CustomerId,BoosterId,FirstName,LastName,Email")] Customer customer)
         {
+            // Force Email to be lowercase
+            customer.Email = customer.Email.ToLower();
+
             if (ModelState.IsValid)
             {
                 db.Entry(customer).State = EntityState.Modified;

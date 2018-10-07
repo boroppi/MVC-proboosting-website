@@ -21,21 +21,30 @@ namespace mvc_proboosting.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [NotMapped]
+        [Display(Name = "Name")]
+        public string FullName => $"{FirstName} {LastName}";
 
         [Required]
         [EmailAddress]
         [StringLength(100)]
         public string Email { get; set; }
 
+        [Required]
+        [Display(Name = "Date Created")]
+        public DateTime DateCreated { get; set; }
+
         [NotMapped]
         public DateTime? LastLogon { get; set; }
-
+        [Display(Name = "Booster Name")]
         public virtual Booster Booster { get; set; }
     }
 }

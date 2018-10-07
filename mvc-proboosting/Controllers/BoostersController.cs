@@ -17,7 +17,7 @@ namespace mvc_proboosting.Controllers
         // GET: Boosters
         public ActionResult Index()
         {
-            return View(db.Boosters.ToList());
+            return View(db.Boosters.ToList().OrderBy(b => b.FullName));
         }
 
         // GET: Boosters/Details/5
@@ -46,8 +46,15 @@ namespace mvc_proboosting.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BoosterId,FirstName,LastName,Email")] Booster booster)
-        {
+        public ActionResult Create([Bind(Include = "BoosterId,FirstName,LastName,Email,DateCreated")] Booster booster)
+        {   
+            // DateCreated is now
+            booster.DateCreated = DateTime.Now;
+            // Force default value to be true
+            booster.IsAvailable = true;
+            // Force email to be lower case when it is saved to DB
+            booster.Email = booster.Email.ToLower();
+
             if (ModelState.IsValid)
             {
                 db.Boosters.Add(booster);
@@ -80,6 +87,9 @@ namespace mvc_proboosting.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BoosterId,FirstName,LastName,Email")] Booster booster)
         {
+            // Force email to be lower case when it is saved to DB
+            booster.Email = booster.Email.ToLower();
+             
             if (ModelState.IsValid)
             {
                 db.Entry(booster).State = EntityState.Modified;
