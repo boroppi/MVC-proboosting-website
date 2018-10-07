@@ -39,7 +39,7 @@ namespace mvc_proboosting.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            ViewBag.BoosterId = new SelectList(db.Boosters, "BoosterId", "FirstName");
+            ViewBag.BoosterId = new SelectList(db.Boosters, "BoosterId", "FullName");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace mvc_proboosting.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,BoosterId,FirstName,LastName,Email")] Customer customer)
+        public ActionResult Create([Bind(Include = "BoosterId,FirstName,LastName,Email")] Customer customer)
         {
             if (ModelState.IsValid)
             {

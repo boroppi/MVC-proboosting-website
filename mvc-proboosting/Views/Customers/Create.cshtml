@@ -1,7 +1,7 @@
 ﻿@model mvc_proboosting.Models.Customer
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Customer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,9 +17,9 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.BoosterId, "BoosterId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BoosterId, "Booster", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("BoosterId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("BoosterId", null , htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BoosterId, "", new { @class = "text-danger" })
             </div>
         </div>

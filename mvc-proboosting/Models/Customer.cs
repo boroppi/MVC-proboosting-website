@@ -11,6 +11,7 @@ namespace mvc_proboosting.Models
     [Table("Customer")]
     public partial class Customer
     {
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int CustomerId { get; set; }
@@ -25,6 +26,7 @@ namespace mvc_proboosting.Models
         [Required]
         [StringLength(50)]
         public string LastName { get; set; }
+
 
         [Required]
         [EmailAddress]

@@ -17,6 +17,9 @@ namespace mvc_proboosting.Models
 
         public int BoosterId { get; set; }
 
+        [NotMapped]
+        public string FullName => $"{FirstName} {LastName}";
+
         [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
