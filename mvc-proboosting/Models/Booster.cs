@@ -39,8 +39,12 @@ namespace mvc_proboosting.Models
         public string Email { get; set; }
 
         [Required]
+        [Column(TypeName = "DateTime")]
         public DateTime DateCreated { get; set; }
-        
+
+        [Display(Name = "Last Logon")]
+        [DisplayFormat(NullDisplayText = "Never")]
+        [Column(TypeName = "DateTime")]
         public DateTime? LastLogon { get; set; }
         
         [Display(Name = "Available")]

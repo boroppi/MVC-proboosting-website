@@ -17,6 +17,7 @@ namespace mvc_proboosting.Models
         public int CustomerId { get; set; }
 
         [ForeignKey("Booster")]
+        [DisplayFormat(NullDisplayText = "Never")]
         public int BoosterId { get; set; }
 
         [Required]
@@ -41,10 +42,11 @@ namespace mvc_proboosting.Models
         [Required]
         [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }
-
-        [NotMapped]
+        
+        [Display(Name = "Last Logon")]
+        [DisplayFormat(NullDisplayText = "Never")]
         public DateTime? LastLogon { get; set; }
-        [Display(Name = "Booster Name")]
+        
         public virtual Booster Booster { get; set; }
     }
 }

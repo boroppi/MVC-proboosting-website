@@ -85,7 +85,7 @@ namespace mvc_proboosting.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BoosterId,FirstName,LastName,Email")] Booster booster)
+        public ActionResult Edit([Bind(Include = "BoosterId,FirstName,LastName,Email,IsAvailable")] Booster booster)
         {
             // Force email to be lower case when it is saved to DB
             booster.Email = booster.Email.ToLower();
@@ -93,6 +93,8 @@ namespace mvc_proboosting.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(booster).State = EntityState.Modified;
+                db.Entry(booster).Property(b => b.DateCreated).IsModified = false;
+                db.Entry(booster).Property(b => b.LastLogon).IsModified = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

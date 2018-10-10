@@ -78,7 +78,7 @@ namespace mvc_proboosting.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BoosterId = new SelectList(db.Boosters, "BoosterId", "FirstName", customer.BoosterId);
+            ViewBag.BoosterId = new SelectList(db.Boosters, "BoosterId", "FullName", customer.BoosterId);
             return View(customer);
         }
 
@@ -95,6 +95,8 @@ namespace mvc_proboosting.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(customer).State = EntityState.Modified;
+                db.Entry(customer).Property(c => c.DateCreated).IsModified = false;
+                db.Entry(customer).Property(c => c.LastLogon).IsModified = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

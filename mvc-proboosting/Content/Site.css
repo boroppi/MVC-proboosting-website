@@ -1,7 +1,99 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: url(../Content/Images/hero-home.jpg);
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
 }
+
+.jumbotron.home {
+    background: transparent;
+}
+
+.jumbotron h1 {
+    color: #97ffff;
+    font-weight: bold;
+    text-shadow: black 0px 0px 20px;
+}
+
+
+h2 + p {
+    color: #ddd;
+    font-size: 1.4em;
+    text-shadow: black 0px 0px 20px;
+    font-weight: bold;
+    
+}
+
+.jumbotron p {
+    padding-top: 10px
+}
+
+h2 {
+    color: #97ffff;
+    font-weight: bold;
+    text-shadow: black 0px 0px 20px;
+}
+
+.lead {
+    line-height: 2em;
+    font-size: 2em;
+    margin: 10px;
+    color: #ddd;
+    text-shadow: black 0px 0px 20px;
+}
+
+.btn {
+    background: transparent;
+    border: #97ffff solid 2px;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+    .btn:hover {
+        background: #97ffff;
+        transition: 0.5s;
+        color: black;
+    }
+
+.btn-default {
+    color: white;
+    border: #ddd solid 2px;
+    font-size: 1em;
+}
+
+    .btn-default:hover {
+        background: #ddd;
+    }
+
+.navbar {
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: black 0 0 10px;
+}
+
+.navbar-brand {
+    padding: 0;
+    content: url(../Content/Images/logo.png);
+}
+
+    .navbar-brand:hover {
+        content: url(../Content/Images/logo-hover.png);
+    }
+
+footer {
+    color: #ddd;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
