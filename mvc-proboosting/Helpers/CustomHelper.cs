@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
@@ -17,7 +14,7 @@ namespace mvc_proboosting.Helpers
             var currentController = routeData["controller"];
             var currentAction = routeData["action"];
 
-            if (String.Equals(controller, currentController as string,
+            if (string.Equals(controller, currentController as string,
                     StringComparison.OrdinalIgnoreCase))
             {
                 return helper.ActionLink(
