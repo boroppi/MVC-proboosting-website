@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Customers</h2>
+<h2 class="h-title">Customers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "fas fa-plus" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @("Customer " +Html.DisplayNameFor(model => model.FullName))
+            @("Customer " + Html.DisplayNameFor(model => model.FullName))
         </th>
         <th>
             @("Booster " + Html.DisplayNameFor(model => model.Booster.FullName))
@@ -24,24 +24,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Booster.FullName)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booster.FullName)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.CustomerId}) |
-            @Html.ActionLink("Details", "Details", new {id = item.CustomerId}) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.CustomerId})
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }, new { @class = "fas fa-edit" })
+                @Html.ActionLink("Details", "Details", new { id = item.CustomerId }, new { @class = "fas fa-list-ul" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId }, new { @class = "fas fa-trash-alt" })
+            </td>
+        </tr>
+    }
 
 </table>

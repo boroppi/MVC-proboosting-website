@@ -5,55 +5,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2 class="h-title">Details</h2>
 
 <div>
-    <h4>Customer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @("Booster " + Html.DisplayNameFor(model => model.Booster.FullName))
-        </dt>
+    <h4 class="h-sec-title">Customer</h4>
+    <div class="custom-panel">
+        <dl class="dl-horizontal">
+            <dt>
+                @("Booster " + Html.DisplayNameFor(model => model.Booster.FullName))
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Booster.FullName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Booster.FullName)
+            </dd>
 
-        <dt>
-            @("Customer " + Html.DisplayNameFor(model => model.FullName))
-        </dt>
+            <dt>
+                @("Customer " + Html.DisplayNameFor(model => model.FullName))
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FullName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
         
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>   
+            <dd>
+                @Html.DisplayFor(model => model.DateCreated)
+            </dd>   
         
-        <dt>
-            @Html.DisplayNameFor(model => model.LastLogon)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastLogon)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastLogon)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LastLogon)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }, new {@class = "fas fa-edit"}) 
+    @Html.ActionLink("Back to List", "Index", null, new {@class = "fas fa-arrow-left"})
 </p>

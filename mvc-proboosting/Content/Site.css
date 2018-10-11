@@ -6,12 +6,17 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+option {
+    background: black;
+}
+
+
 .jumbotron.home {
     background: transparent;
 }
 
 .jumbotron h1 {
-    color: #97ffff;
+    color: #7eeeee;
     font-weight: bold;
     text-shadow: black 0px 0px 20px;
 }
@@ -21,8 +26,6 @@ h2 + p {
     color: #ddd;
     font-size: 1.4em;
     text-shadow: black 0px 0px 20px;
-    font-weight: bold;
-    
 }
 
 .jumbotron p {
@@ -30,7 +33,7 @@ h2 + p {
 }
 
 h2 {
-    color: #97ffff;
+    color: #7eeeee;
     font-weight: bold;
     text-shadow: black 0px 0px 20px;
 }
@@ -45,7 +48,7 @@ h2 {
 
 .btn {
     background: transparent;
-    border: #97ffff solid 2px;
+    border: #7eeeee solid 2px;
     border-radius: 25px;
     padding: 10px 20px;
     font-size: 1em;
@@ -53,7 +56,7 @@ h2 {
 }
 
     .btn:hover {
-        background: #97ffff;
+        background: #7eeeee;
         transition: 0.5s;
         color: black;
     }
@@ -71,7 +74,7 @@ h2 {
 .navbar {
     background: transparent;
     border: none;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
     text-shadow: black 0 0 10px;
 }
@@ -79,16 +82,138 @@ h2 {
 .navbar-brand {
     padding: 0;
     content: url(../Content/Images/logo.png);
+    margin-right: 10px;
 }
 
     .navbar-brand:hover {
         content: url(../Content/Images/logo-hover.png);
     }
 
+.navbar-nav > li > a.active {
+    color: #7eeeee !important;
+}
+
+#socialLoginForm {
+    color: #ddd;
+}
+
+label {
+    color: #ddd;
+}
+
 footer {
     color: #ddd;
     position: absolute;
     bottom: 0;
+}
+
+a.fas:before {
+    margin-right: 10px;
+}
+
+a.fas {
+    background: transparent;
+    border: #7eeeee solid 2px;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+}
+
+    a.fas:hover {
+        background: #7eeeee;
+        transition: 0.5s;
+        color: black;
+        text-decoration: none;
+    }
+
+.h-title {
+    font-size: 3em;
+    margin: 40px auto;
+}
+
+.h-sec-title {
+    font-size: 2em !important;
+    color: #7eeeee !important;
+}
+
+.control-label {
+    color: #ddd;
+    text-shadow: black 0 0 20px;
+    font-size: 1.2em;
+}
+
+
+.form-control {
+    background: none;
+    border: none;
+    border-bottom: #7eeeee solid 1px;
+    font-size: 1.2em;
+    text-shadow: black 0 0 20px;
+    color: #ddd;
+}
+
+    .form-control:focus {
+        border: none;
+        outline: 0px;
+        -webkit-appearance: none;
+        box-shadow: none;
+    }
+
+.custom-panel {
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(0,0,0,0.2) 0 0 20px 20px;
+}
+
+.table {
+    color: white;
+    border-radius: 25px;
+    box-shadow: #999 0 0 1000px;
+}
+
+    .table > tbody > tr > td > a {
+        margin-right: 10px
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th {
+        padding: 10px 20px;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th {
+        border: none;
+        font-weight: bold !important;
+    }
+
+    .table > tbody > tr > td {
+        vertical-align: inherit;
+    }
+
+    .table > tbody > tr > th {
+        font-size: 1.2em;
+        font-weight: bold !important;
+    }
+
+    .table > tbody > tr:not(:first-child) {
+        border-top: #ddd solid 1px;
+    }
+
+
+a[href*="mailto:"] {
+    color: #7eeeee;
+}
+
+dl > dt, dl > dd {
+    margin-bottom: 10px;
+    color: #ddd;
+    font-size: 1.2em;
+}
+
+dt {
+    font-weight: bold;
 }
 
 
