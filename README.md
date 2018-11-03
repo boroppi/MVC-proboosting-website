@@ -1,5 +1,5 @@
 <h1> COMP2084 ASP.NET MVC Boosting Service App</h1>
-
+<p>Live link to the website: https://proboost.azurewebsites.net/ </p>
 <p>This application is built for Georgian College's COMP2084 class assignment 1.
 It uses ASP.NET MVC, SQL Server, Entity Framework and is hosted on Microsoft's Azure cloud platform</p>
 
