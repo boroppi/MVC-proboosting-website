@@ -1,4 +1,5 @@
-﻿@model IEnumerable<mvc_proboosting.Models.Customer>
+﻿@using System.Diagnostics.Eventing.Reader
+@model IEnumerable<mvc_proboosting.Models.Customer>
 
 @{
     ViewBag.Title = "Customers";
@@ -8,7 +9,11 @@
 <h2 class="h-title">Customers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "fas fa-plus" })
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Create New", "Create", null, new { @class = "fas fa-plus" })
+
+    }
 </p>
 <table class="table sortable">
     <tr>
@@ -38,9 +43,19 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }, new { @class = "fas fa-edit" })
-                @Html.ActionLink("Details", "Details", new { id = item.CustomerId }, new { @class = "fas fa-list-ul" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId }, new { @class = "fas fa-trash-alt" })
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }, new { @class = "fas fa-edit" })
+                    @Html.ActionLink("Details", "Details", new { id = item.CustomerId }, new { @class = "fas fa-list-ul" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId }, new { @class = "fas fa-trash-alt" })
+
+                }
+                else
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.CustomerId }, new { @class = "fas fa-list-ul" })
+
+                }
+
             </td>
         </tr>
     }

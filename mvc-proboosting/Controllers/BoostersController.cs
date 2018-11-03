@@ -10,17 +10,19 @@ using mvc_proboosting.Models;
 
 namespace mvc_proboosting.Controllers
 {
+    [Authorize]
     public class BoostersController : Controller
     {
         private BoostTaskModel db = new BoostTaskModel();
 
         // GET: Boosters
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Boosters.ToList().OrderBy(b => b.FullName));
         }
-
         // GET: Boosters/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

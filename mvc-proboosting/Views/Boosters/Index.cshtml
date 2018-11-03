@@ -8,7 +8,11 @@
 <h2 class="h-title">Boosters</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "fas fa-plus" })
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Create New", "Create", null, new { @class = "fas fa-plus" })
+
+    }
 </p>
 <table class="table sortable">
     <tr>
@@ -37,11 +41,26 @@
                 @(item.IsAvailable)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BoosterId }, new { @class = "fas fa-edit" }) 
-                @Html.ActionLink("Details", "Details", new { id = item.BoosterId }, new { @class = "fas fa-list-ul" }) 
-                @Html.ActionLink("Delete", "Delete", new { id = item.BoosterId }, new { @class = "fas fa-trash-alt" })
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BoosterId }, new { @class = "fas fa-edit" })
+                    @Html.ActionLink("Details", "Details", new { id = item.BoosterId }, new { @class = "fas fa-list-ul" })
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BoosterId }, new { @class = "fas fa-trash-alt" })
+
+
+                }
+
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.BoosterId }, new { @class = "fas fa-list-ul" })
+
+                }
+
             </td>
         </tr>
     }
+
 
 </table>
