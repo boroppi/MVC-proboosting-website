@@ -10,17 +10,20 @@ using mvc_proboosting.Models;
 
 namespace mvc_proboosting.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         private BoostTaskModel db = new BoostTaskModel();
 
         // GET: Customers
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var customers = db.Customers.Include(c => c.Booster);
             return View(customers.ToList().OrderBy(c => c.FullName));
         }
 
+        [AllowAnonymous]
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
