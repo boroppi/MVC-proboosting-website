@@ -119,7 +119,6 @@ namespace mvc_proboosting.Tests.Controllers
 
         #endregion
 
-
         #region Details
         // GET: Customers/Details
         [TestMethod]
@@ -251,7 +250,7 @@ namespace mvc_proboosting.Tests.Controllers
         public void EditGetNoId()
         {
             // act
-            var result = (ViewResult)this.controller.Edit(null);
+            var result = (ViewResult)this.controller.Edit((int?)null);
 
             // assert
             Assert.AreEqual("Error", result.ViewName);
@@ -278,6 +277,17 @@ namespace mvc_proboosting.Tests.Controllers
         }
 
         [TestMethod]
+        public void EditGetValidCustomerObject()
+        {
+            // act 
+            Customer result = (Customer)((ViewResult)this.controller.Edit(1)).Model;
+
+            // assert 
+            Assert.AreEqual(this.customers[1], result);
+        }
+
+
+        [TestMethod]
         public void EditGetReturnsValidPage()
         {
             // act
@@ -287,8 +297,121 @@ namespace mvc_proboosting.Tests.Controllers
             Assert.IsNotNull("Index", result.ViewName);
         }
 
+        //POST: Customers/Edit
+        [TestMethod]
+        public void EditPostEmailValid()
+        {
+            // arrange
+            controller.ModelState.AddModelError("some error name", "Error description");
+            var uppercaseEmail = this.customers[0].Email.ToUpper();
+            var uppercasedEmailCustomerList = this.customers;
+            uppercasedEmailCustomerList[0].Email = uppercaseEmail;
+
+            // act 
+            var result = (Customer)((ViewResult)controller.Edit(uppercasedEmailCustomerList[0])).Model;
+
+            // assert
+            Assert.AreEqual("alan@gmail.com", result.Email);
+        }
+
+        [TestMethod]
+        public void EditPostRedirectToValidPage()
+        {
+            // act
+            var result = this.controller.Edit(this.customers[0]) as RedirectToRouteResult;
+
+            // arrange
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
+
+
+        [TestMethod]
+        public void EditPostValidCustomerObject()
+        {
+            // arrange
+            controller.ModelState.AddModelError("some error name", "Error description");
+
+            // act 
+            Customer result = (Customer)((ViewResult)this.controller.Edit(1)).Model;
+
+            // assert 
+            Assert.AreEqual(this.customers[1], result);
+        }
+
+
+        [TestMethod]
+        public void EditPostViewBagNotNull()
+        {
+            // arrange
+            controller.ModelState.AddModelError("some error name", "Error description");
+
+            // act 
+            var result = (ViewResult)this.controller.Edit(1);
+
+            // assert 
+            Assert.IsNotNull(result.ViewBag.BoosterId);
+        }
+
+        [TestMethod]
+        public void EditPostReturnValidPage()
+        {
+            // arrange
+            controller.ModelState.AddModelError("some error name", "Error description");
+
+            // act 
+            var result = (ViewResult)this.controller.Edit(1);
+
+            // assert 
+            Assert.AreEqual("Edit", result.ViewName);
+        }
         #endregion
 
+        #region Delete
+        //GET: Customers/Delete
 
+        [TestMethod]
+        public void DeleteGetCustomerIdisNull()
+        {
+            // arrange
+            int? id = null;
+
+            // act 
+            var result = this.controller.Delete(id) as ViewResult;
+            
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteGetValidCustomerObject()
+        {
+            // act
+            var result = ((ViewResult)this.controller.Delete(1)).Model as Customer;
+
+            // assert
+            Assert.AreEqual(this.customers[1], result);
+        }
+
+        [TestMethod]
+        public void DeleteGetInvalidCustomerId()
+        {
+            // act
+            var result = (ViewResult)this.controller.Delete(6);
+
+            // assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteGetReturnValidPage()
+        {
+            // act
+            var result = (ViewResult)this.controller.Delete(1);
+
+            //assert
+            Assert.AreEqual("Delete", result.ViewName);
+        }
+
+        #endregion
     }
 }

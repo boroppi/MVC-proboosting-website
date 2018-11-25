@@ -110,42 +110,48 @@ namespace mvc_proboosting.Controllers
             return View("Edit", customer);
         }
 
-        //// POST: Customers/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "CustomerId,BoosterId,FirstName,LastName,Email")] Customer customer)
-        //{
-        //    // Force Email to be lowercase
-        //    customer.Email = customer.Email.ToLower();
+        // POST: Customers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "CustomerId,BoosterId,FirstName,LastName,Email")] Customer customer)
+        {
+            // Force Email to be lowercase
+            customer.Email = customer.Email.ToLower();
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(customer).State = EntityState.Modified;
-        //        db.Entry(customer).Property(c => c.DateCreated).IsModified = false;
-        //        db.Entry(customer).Property(c => c.LastLogon).IsModified = false;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.BoosterId = new SelectList(db.Boosters, "BoosterId", "FirstName", customer.BoosterId);
-        //    return View(customer);
-        //}
+            if (ModelState.IsValid)
+            {
+                //db.Entry(customer).State = EntityState.Modified;
+                //db.Entry(customer).Property(c => c.DateCreated).IsModified = false;
+                //db.Entry(customer).Property(c => c.LastLogon).IsModified = false;
+                //db.SaveChanges();
+                this.db.Save(customer);
+                return RedirectToAction("Index");
+            }
+            ViewBag.BoosterId = new SelectList(db.Boosters, "BoosterId", "FirstName", customer.BoosterId);
+            return View("Edit", customer);
+        }
 
-        //// GET: Customers/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Customer customer = db.Customers.Find(id);
-        //    if (customer == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(customer);
-        //}
+        // GET: Customers/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.View("Error");
+            }
+
+            Customer customer = db.Customers.SingleOrDefault(c => c.CustomerId == id);
+
+            if (customer == null)
+            {
+                //return HttpNotFound();
+                return this.View("Error");
+            }
+
+            return View("Delete", customer);
+        }
 
         //// POST: Customers/Delete/5
         //[HttpPost, ActionName("Delete")]
