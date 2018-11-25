@@ -209,6 +209,8 @@
     <Compile Include="Models\Booster.cs" />
     <Compile Include="Models\BoostTaskModel.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\EFCustomers.cs" />
+    <Compile Include="Models\ICustomersMock.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
