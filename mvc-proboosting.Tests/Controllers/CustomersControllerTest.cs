@@ -412,6 +412,34 @@ namespace mvc_proboosting.Tests.Controllers
             Assert.AreEqual("Delete", result.ViewName);
         }
 
+        //POST: Customers/Delete
+
+        [TestMethod]
+        public void DeletePostInvalidCustomerId()
+        {
+            // arrange
+            Customer customer = this.customers[0];
+
+            // act
+            var result = ((RedirectToRouteResult)this.controller.DeleteConfirmed(6, ref customer)).RouteValues["action"];
+            
+            // assert
+            Assert.IsNull(customer);
+        }
+
+        [TestMethod]
+        public void DeletePostRedirectToValidPage()
+        {
+            // arrange
+            Customer customer = this.customers[0];
+
+            // act
+            var result = ((RedirectToRouteResult)this.controller.DeleteConfirmed(6, ref customer)).RouteValues["action"];
+
+            // assert
+            Assert.AreEqual("Index", result);
+        }
+
         #endregion
     }
 }

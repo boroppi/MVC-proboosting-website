@@ -153,16 +153,17 @@ namespace mvc_proboosting.Controllers
             return View("Delete", customer);
         }
 
-        //// POST: Customers/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Customer customer = db.Customers.Find(id);
-        //    db.Customers.Remove(customer);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        // POST: Customers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id, ref Customer _customer)
+        {
+            Customer customer = db.Customers.SingleOrDefault(c => c.CustomerId == id);
+            db.Delete(customer);
+            _customer = customer;
+            //db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         //protected override void Dispose(bool disposing)
         //{
